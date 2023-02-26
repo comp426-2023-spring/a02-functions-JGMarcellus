@@ -17,5 +17,60 @@ if (args.h) {
   process.exit(0);
 }
 
+console.log(args);
+
+if (args.n) {
+	var latitude = args.n;	
+}
+else if (args.s) {
+	var latitude = args.s * -1;	
+}
+else {
+ 	process.exit(0);
+}
+
+
+
+if (args.e) {
+        var longtitude = args.e;
+}
+else if (args.w) {
+        var longtitude = args.w * -1;
+}
+else {
+        process.exit(0);
+}
+
+if (args.z) {
+	var timezone = args.z;
+}
+else {
+	var timezone = moment.tz.guess();
+}
+
+if (args.d && args.d >= 0 && args.d <= 6) {
+	var day = args.d;
+}
+else {
+	var day = 0;
+}
+
+const API_URL = "https://api.open-meteo.com/v1/forecast?latitude=" + latitude + "&longitude=" + longtitude + "&daily=precipitation_hours&current_weather=true&timezone=" + timezone;
+
+
+const response = await fetch(API_URL);
+const data = await response.json();
+
+if (data.daily.precipitation_hours[day] > 0) {
+	process.stdout.write("You might need your galoshes ");
+}
+
+if (day == 0) {
+  console.log("today.")
+} else if (day > 1) {
+  console.log("in " + day + " days.")
+} else {
+  console.log("tomorrow.")
+}
 
 
