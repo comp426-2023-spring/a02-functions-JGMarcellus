@@ -17,8 +17,6 @@ if (args.h) {
   process.exit(0);
 }
 
-console.log(args);
-
 if (args.n) {
 	var latitude = args.n;	
 }
@@ -63,6 +61,9 @@ const data = await response.json();
 
 if (data.daily.precipitation_hours[day] > 0) {
 	process.stdout.write("You might need your galoshes ");
+}
+else {
+	process.stdout.write("You probably won't need your galoshes ");
 }
 
 if (day == 0) {
