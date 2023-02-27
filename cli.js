@@ -17,26 +17,15 @@ if (args.h) {
   process.exit(0);
 }
 
-if (args.n) {
-	var latitude = args.n;	
-}
-else if (args.s) {
-	var latitude = args.s * -1;	
-}
-if (latitude > 90 || latitude < -90) {
- 	console.log('Latitude must be in range');
-}
 
+var latitude = args.n ?? -args.s
+var longtitude = args.e ?? -args.w
 
-
-if (args.e) {
-        var longtitude = args.e;
+if(latitude > 90 || latitude < -90){
+	console.log('Latitude must be in range [-90, 90]')
 }
-else if (args.w) {
-        var longtitude = args.w * -1;
-}
-if (longtitude > 180 || longtitude < -180) {
-        console.log('Longtitude must be in range');
+if(longtitude > 90 || longtitude < -90){
+	console.log('Longitude must be in range [-90 -> 90]')
 }
 
 if (args.z) {
