@@ -46,7 +46,7 @@ else {
 	var timezone = moment.tz.guess();
 }
 
-if (args.d && args.d >= 0 && args.d <= 6) {
+if (typeof(args.d) !== 'undefined') {
 	var day = args.d;
 }
 else {
@@ -71,7 +71,7 @@ else {
 	process.stdout.write("You probably won't need your galoshes ");
 }
 
-if (day == 0) {
+if (day < 0.1) {
   console.log("today.")
 } else if (day > 1) {
   console.log("in " + day + " days.")
